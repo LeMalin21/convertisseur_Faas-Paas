@@ -1,0 +1,7 @@
+[project]
+name = "convertisseur-saas"
+version = "1.0.0"
+dependencies = ["flask", "requests", "flask-sqlalchemy", "psycopg2-binary"]
+
+[tool.vercel]
+entrypoint = "app:app"

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titre %}Connexion{% endblock %}
+
+{% block contenu %}
+  <h1>Convertisseur de devises</h1>
+
+  <form method="post" class="formulaire-connexion">
+    <input name="nom" placeholder="Nom d'utilisateur" required>
+    <input name="mot_de_passe" type="password" placeholder="Mot de passe" required>
+    <!-- Deux boutons : la valeur "action" indique lequel a été cliqué -->
+    <button name="action" value="connexion">Se connecter</button>
+    <button name="action" value="inscription">Créer un compte</button>
+  </form>
+
+  {% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
+{% endblock %}

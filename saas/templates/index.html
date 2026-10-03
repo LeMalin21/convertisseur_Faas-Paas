@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+  <p>Connecté en tant que <strong>{{ nom }}</strong> ·
+     <a href="{{ url_for('auth.deconnexion') }}">Déconnexion</a></p>
+
+  <h1>Convertisseur de devises</h1>
+
+  <form method="post" class="formulaire-conversion">
+    <input type="number" name="montant" step="any" min="0" placeholder="Montant" required>
+    <select name="de">
+      {% for d in devises %}<option>{{ d }}</option>{% endfor %}
+    </select>
+    →
+    <select name="vers">
+      {% for d in devises %}<option {% if d == "CAD" %}selected{% endif %}>{{ d }}</option>{% endfor %}
+    </select>
+    <button>Convertir</button>
+  </form>
+
+  {% if resultat %}
+    <p class="resultat">{{ resultat.montant }} {{ resultat.de }} =
+       <strong>{{ resultat.resultat }} {{ resultat.vers }}</strong></p>
+  {% endif %}
+  {% if erreur %}<p class="erreur">{{ erreur }}</p>{% endif %}
+
+  <h2>Mon historique</h2>
+  {% if historique %}
+    <ul>
+      {% for c in historique %}
+        <li>{{ c.montant }} {{ c.de }} → {{ c.resultat }} {{ c.vers }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucune conversion pour l'instant.</p>
+  {% endif %}
+{% endblock %}
