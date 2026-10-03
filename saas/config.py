@@ -7,8 +7,10 @@ class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", "cle-de-developpement")
 
     # SQLite en local, PostgreSQL en ligne
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "sqlite:///saas.db").replace(
-        "postgres://", "postgresql://", 1  # format attendu par SQLAlchemy
+    SQLALCHEMY_DATABASE_URI = (
+        os.environ.get("DATABASE_URL", "sqlite:///saas.db")
+        .replace("postgres://", "postgresql+psycopg://", 1)
+        .replace("postgresql://", "postgresql+psycopg://", 1)
     )
 
     # Adresse de la fonction FaaS
