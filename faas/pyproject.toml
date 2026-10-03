@@ -1,0 +1,9 @@
+# Fichier de configuration standard d'un projet Python.
+
+[project]
+name = "convertisseur-faas"
+version = "1.0.0"
+dependencies = []   
+
+[tool.vercel]
+entrypoint = "api.convertir:handler"
